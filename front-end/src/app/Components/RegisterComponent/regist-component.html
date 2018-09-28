@@ -55,6 +55,8 @@
                             <div class="form-group">
                                 <label for="mobile">Mobile:</label>
                                 <input id="mobile" class="form-control"
+                                [ngModelOptions] = "{ standalone: true }"
+                                #mobileNameVar = "ngModel"
                                 [(ngModel)]="customer.mobile" />
                             </div>
                         </div>
@@ -63,6 +65,8 @@
                     <div class="form-group">
                         <label for="jobDescription">Job Description:</label>
                         <input id="jobDescription" class="form-control"
+                        [ngModelOptions] = "{ standalone: true }"
+                        #jobNameVar = "ngModel"
                         [(ngModel)]="customer.jobDescription" />
                     </div>
                 </fieldset>
