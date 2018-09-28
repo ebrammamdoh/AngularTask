@@ -1,0 +1,118 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Register Form</h3>
+        </div>
+        <form (ngSubmit) =" saveData()" #customerForm = "ngForm"> 
+        <div class="panel-body">
+
+                <fieldset>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group" 
+                                [ngClass] = "{'has-error':(firstNameVar.touched || firstNameVar.dirty) &&  !firstNameVar.valid}">
+                                    <label for="first">First Name:</label>
+                                    <input  [(ngModel)]="customer.firstName"  id="first"
+                                    class="form-control" 
+                                    required placeholder="(required)"
+                                    [ngModelOptions] = "{ standalone: true }"
+                                    #firstNameVar = "ngModel"/>
+                                    <span *ngIf="firstNameVar.touched &&  firstNameVar.errors">
+                                        Please enter your first name
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group" 
+                                [ngClass] = "{'has-error': (lastNameVar.touched || lastNameVar.dirty) &&  !lastNameVar.valid}">
+                                    <label for="lastname">Last Name:</label>
+                                    <input id="lastname" class="form-control" required placeholder="(required)"
+                                    [(ngModel)]="customer.lastName" 
+                                    [ngModelOptions] = "{ standalone: true }"
+                                    #lastNameVar = "ngModel"/>
+                                    <span *ngIf="lastNameVar.touched &&  lastNameVar.errors">
+                                        Please enter your second name
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group" 
+                            [ngClass] = "{'has-error': (emailNameVar.touched || emailNameVar.dirty) &&  !emailNameVar.valid}">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" class="form-control" required placeholder="(required)"
+                                [(ngModel)]="customer.email"
+                                [ngModelOptions] = "{ standalone: true }"
+                                #emailNameVar = "ngModel"/>
+                                <span *ngIf=" emailNameVar.touched &&  emailNameVar.errors ">
+                                    Please enter your email name
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="mobile">Mobile:</label>
+                                <input id="mobile" class="form-control"
+                                [(ngModel)]="customer.mobile" />
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="jobDescription">Job Description:</label>
+                        <input id="jobDescription" class="form-control"
+                        [(ngModel)]="customer.jobDescription" />
+                    </div>
+                </fieldset>
+            </div>
+           
+        <div class="panel-footer">
+            <div class="row">
+                    <button  type="submit" class="btn btn-primary col-sm-2">Save</button>
+                    <div class="col-sm-1"></div>
+                    <button class="btn btn-default col-sm-2" (click)="reset()">Reset</button>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="panel panel-default" *ngIf="customers">
+        <div class="panel-header">
+            <div class=" form-group">
+                <div class="col-sm-2">
+                    <label for="search">Search First Name: </label>
+                </div>
+                <div class="col-sm-4">
+                    <input id="search" class="form-control" [(ngModel)] = filterKey/>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="panel-body">
+            <div *ngIf="customers && customers.length">
+                <table class="table table-bordered table-striped table-condensed">
+                    <thead>
+                    <tr>
+                        <th>FULL NAME</th>
+                        <th>EMAIL</th>
+                        <th>MOBILE</th>
+                        <th>JOB DESCRIPTION</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let customer of customers | customerFilter:filterKey">
+                            <td>{{customer.firstName + ' ' + customer.lastName}}</td>
+                            <td>{{customer.email}}</td>
+                            <td>{{customer.mobile}}</td>
+                            <td>{{customer.jobDescription}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

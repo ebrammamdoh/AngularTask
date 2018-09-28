@@ -1,0 +1,15 @@
+.newBtn{
+    border-radius: 5px;
+    background-color: #086788;
+    color: #C1DFF0;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 1px 1px #888888;
+}
+
+.newBtn:hover{
+    color: #086788;
+    background-color: #C1DFF0;
+    border-color: #086788;
+    box-shadow: 0px;
+}
