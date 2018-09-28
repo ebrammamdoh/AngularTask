@@ -4,7 +4,8 @@ import { RegisterService } from "../../Services/RegisterServices/register-servic
 
 
 @Component({
-    templateUrl: './regist-component.html'
+    templateUrl: './regist-component.html',
+    styleUrls: ['./regist-component.css']
 })
 export class RegisterComponent implements OnInit{
     
